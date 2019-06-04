@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="本篇可视化新闻作品旨在基于大量客观数据分析西安市新能源汽车的发展状况" />
+        <meta name="keywords" content="后补贴,西安,新能源汽车" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+        <script type="text/javascript" src="js/echarts.js"></script>
+        
+        <!-- 手机端动态适配 -->
+        <script type="text/javascript">
+            var phoneWidth =  parseInt(window.screen.width);
+            var phoneScale = phoneWidth/640;
+            var ua = navigator.userAgent;
+            if (/Android (\d+\.\d+)/.test(ua)){
+                var version = parseFloat(RegExp.$1);
+                if(version>2.3){
+                    document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+                }else{
+                    document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+            }
+        </script>
+
+       
+            
+    
+        <title>“后补贴”时代悄然到来，老陕能否喜提“新”车？</title>
+        <style type="text/css">
+            body{
+                background-color: #81e9dd;
+                margin: 0;
+                /* azure */
+                /* lightcyan */
+                /* paleturquoise */
+                /* powderblue */
+                /* lightseagreen */
+            }
+            /* 字体声明如下： */
+            @font-face {
+             font-family: '方正像素12';
+             src: url('方正像素12.ttf');
+             src: url('方正像素12.ttf') format('truetype'), 
+                          /* url('fontName.svg#fontName') format('svg'); */
+            }
+
+            input{
+                outline:none;
+            }
+                    
+        </style>
+    </head>
+    <body>
+        <link rel="stylesheet" href="css/content.css" type="text/css">
+        <link rel="stylesheet" href="css/pic.css" type="text/css">
+        <!-- <link rel="stylesheet" href="css/shake.css" type="text/css" media="all"> -->
+        <!-- 
+            项目：数据新闻作品
+            前端作者：杨森
+            日期：2019年4月5日
+         -->
+
+        
+        <div class="head_pic" style="background-color: rgb(99, 208, 209)">
+                <img src="img/earth3.gif" alt="Green Energy" style="width: 100%" />
+                <!-- <img src="img/7.png" alt="Green Energy Text" width="600px" /> -->
+        </div>
+        
+        <div id="edited" style="width: 100%;">
+            <br />
+            <br />
+            <span style="text-align: left; color:black; font-size: 20px; font-family: 方正像素12, 微软雅黑; font-style:italic;">
+                edited by: 西安外国语大学 王绪静 & 李晶 & 杨森&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <a id="call_us" href="mailto:1761789522@qq.com" style="text-decoration: none; font-size: 20px; font-style: italic; font-family:'方正像素12'; margin-right: 0">联系我们</a>
+        </div>
+
+        <div class="content">
+            <br />
+            <p>
+                作为“一带一路”的起点，西安有着良好的汽车产业基础。2013年11月，国家四部委（财政部、工业和信息化主管部门、科技
+                部、发改委，下同）正式批准西安市成为首批新能源汽车推广应用试点城市之一。自此以后，西安市的道路上，代表着“绿色
+                环保”的新能源汽车“油门不松，一路猛增”，方兴未艾。本作品借助一位虚拟西安市民“老陕”，整合真实数据实现可视化
+                效果，讲述西安市的新能源汽车补贴新政、配套充电设施建设以及车主评价和新能源车企生产情况。西安市新能源汽车行业
+                发展现状可见一斑。
+                <br />
+                <br />
+                <br />
+            </p>
+            
+            <!-- <img class="wheels-nineteen" src="img/1_1.png" alt="car_gif" /> -->
+
+            
+            <style>
+                #idcard{position: relative;}
+                #introduce{position: absolute; top: -100px; left: 500px;}
+            </style>
+
+            <div id="idcard" style="padding-left: 200px">
+                <br />
+                <br />
+                <br />
+                <br />
+                <img src="img/idcard.png" alt="像素风人物卡片" width="350px" />
+
+                <img id="introduce" src="img/intro.png">
+                <br />
+                <br />
+            </div>
+
+            <h2><img class="wheels-nineteen" src="img/1_1.png" alt="car_gif" />  来自一个老陕的“独白”</h2>
+
+            <p>
+                最近，我观察到西安城里出现越来越多的“绿牌”新能源车，我曾听说，政府对新能源汽车一直以来补贴十分优厚，西安市的
+                配套充电设施也建设得不错，另外，众多车企也在国家的鼓励下提高了新能源汽车的生产质量……入手新能源汽车的想法涌上
+                心头，然而，事实是否真如听说的那样？我仍需进行一番探究。
+            </p>
+            <br />
+            <h2><img class="wheels-nineteen" src="img/1_1.png" alt="car_gif" />  迈入“后补贴”</h2>
+            
+            <p>
+                打开中央人民政府官方网站，搜索与新能源汽车相关的政策消息，我意外发现原本丰厚的新能源汽车补贴正面临着全国性的大幅度缩水。
+            </p>
+            <p>
+                自2013年推广试点以来，在新能源汽车的相关政策文件中，国家财政部持续对新能源汽车发放购置补贴。截至目前，最新的一
+                份政策文件是由我国四部委于2019年3月26日发布的《关于进一步完善新能源汽车推广应用财政补贴政策的通知（财建
+                〔2019〕138号）》。这一政府文件表示，国家为提高新能源汽车动力电池系统能量密度的门槛要求，将对全国新能源客车、
+                专用车、乘用车下调补贴标准。在不久之后的6月25日，地方政府将不再对新能源汽车（新能源公交车和燃料电池汽车除外）
+                给予购置补贴。若地方继续给予购置补贴的，中央将对相关财政补贴作相应扣减。靠补贴成长起来的新能源汽车行业，面临全
+                国性的补贴下调，可以说新能源市场已迈入了“后补贴”时代。
+            </p>
+            <p>
+                我通过对比国家2018年和2019年的补贴细则发现，在不同续航里程要求下，3月新政指示的补贴数额出现明显的下降，对于续
+                航低于250km的新能源汽车，中央政府将不再发放财政补贴。
+            </p>
+
+            <br />
+            <div class="pic_name" style="padding-left:50px;">
+                <span style="font-family:'微软雅黑'; font-size:17px; font-weight: 900;">2018&2019年财政部对不同续航里程区间内新能源汽车的补贴数额交互图</span>
+                <br />
+                <br />
+            </div>
+
+            <div class="pic1_script">
+            
+                <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+                <style>
+                    #hello{width:550px;height:410px;overflow:hidden;margin:auto;position:relative;}
+                    #world{margin: 0; width: 90px; height:50px; position: absolute; top: 0px; right: 10px;}
+                    
+                    /* .p189{} */
+                </style>
+                
+                <div id="hello">
+                    <img class="p188" src="img/2018z.gif" width="550px" />
+                    <img class="p189" src="img/2019z.gif" width="550px" />
+                    <!-- <img class="p189" src="img/1_2019.gif" width="550px" /> -->
+                    <!-- <img src="http://i2.baidu.com/it/u=695011303,1300693603&fm=203"> -->
+                <div id="world">
+                    <input type="button" style="width:87px; height:40px; border: transparent; background: url(img/2018.gif)" onclick="a()";>
+                    <input type="button" style="width:87px; height:40px; border: transparent; background: url(img/2019.gif)" onclick="b()";>
+                    <!-- <span id="comeon" style="font-family:方正像素12; font-size: 30px; padding-right: 100px;"> ← 点我</span> -->
+                </div>
+                
+                    
+                </div>
+                <div class="data_resource" style="padding-left:450px;">
+                    <span style="font-family:'方正像素12', '微软雅黑'; font-size:15px; font-style: italic">数据来源：2018全年至2019年3月26日中央人民政府官网新能源汽车补贴政策文件</span>
+                    <br />
+                    <br />
+                </div>
+                
+
+                
+        
+                
+        
+                <script type="text/javascript">
+                    function a(){
+                        $('.p188').show();
+                        $('.p189').hide();
+
+                    }
+                    function b(){
+                        $('.p189').show();
+                        $('.p188').hide();
+
+                    }
+        
+                </script>
+            </div>
+            
+
+            <p>
+                政策中，购置补贴大幅下降，补贴的续航标准明显提升，这无疑表明了国家希望提高新能源车的生产质量，推动行业良性发
+                展。而作为潜在消费者的我，会受到什么影响呢？
+            </p>
+            <p>
+                假如，我选择购入一辆工况续航R= 400公里的纯电动新能源乘用车，根据最新政策的续航里程要求，在今年6月25日之后，我
+                购这辆车所获补贴比去年将减少5万元。算到这里，我有些踌躇，这相当于我一年的税后收入。
+            </p>
+
+            <br />
+            <div class="pic_name" style="padding-left:100px;">
+                <span style="font-family:'微软雅黑'; font-size:17px; font-weight: 900;">2018年&2019年依据财政部补贴标准的实例图</span>
+                <br />
+                <br />
+            </div>
+
+            <div class="policy_analysis" style="text-align: center;">
+                <!-- <span style="font-family:'像素字体','微软雅黑'; font-size: 25px; color:rgb(34, 10, 245);">“后补贴”对新能源车企有什么影响？</span> -->
+                <!-- <p>详见下图：</p> -->
+                <div class="car_gifs" style="background-color: transparent;">
+                    <!-- <img src="img/3.gif" width="400px" /><br /> -->
+                    <img src="img/car2.gif" width="550px" />
+                </div>
+                <div class="data_resource" style="padding-left:315px;">
+                        <span style="font-family:'方正像素12', '微软雅黑'; font-size:15px; font-style: italic">依据中央人民政府官网新能源汽车补贴政策举例</span>
+
+                </div>
+            </div>
+            
+           
+            <br />
+            <h2><img class="wheels-nineteen" src="img/1_1.png" alt="car_gif" />  车友“有话说”</h2>
+      
+
+            <p>
+                看来，作为购买“新”车的重要原因——丰厚的补贴，不再像以前那么吸引我了。那么新能源汽车是否有其他值得购买的原因
+                呢？为了了解更多的相关信息，我加入了一个西安市新能源汽车车友群。有热心车友提醒我关注本地新能源汽车的配套充电基
+                础设施建设，建议我下载一个国内知名充电桩运营品牌的APP，可以看到充电桩建设的具体情况。我从这个APP中大致了解到
+                西安市充电桩的分布情况和用户评价。
+            </p>
+            <br />
+            <br />
+            
+            <div class="pic_name" style="padding-left:100px;">
+                    <span style="font-family:'微软雅黑'; font-size:17px; font-weight: 900;">西安市特来电充电桩分布图</span>
+                    <br />
+            </div>
+
+            <style>
+                #map{width:800px;height:450px;border:1px solid transparent;overflow:hidden;margin:auto;position: relative;}
+                #map_button{margin: auto; width: 90px; height:50px; position: absolute; top: 265px; right: 240px;}
+            </style>
+
+            <div id="map">
+                <img class="map1" src="img/map1.gif" alt="西安市充电桩分布情况" width="750px" />
+                <img class="map2" src="img/map2.png" alt="西安市区充电桩分布情况" width="750px">
+                
+                <div id="map_button">
+                    <input type="button" style=" border: transparent; width:87px; height:80px; background-color: transparent;" onclick="c()";>
+                </div>
+            </div>
+            
+            
+            
+            <script type="text/javascript">
+                function c(){
+                    // $('.map2').show();
+                    $('.map1').hide();
+                    // $('.map1').show();
+
+                }
+    
+            </script>
+
+            <div class="data_resource" style="padding-left:460px;">
+                <br />
+                <span style="font-family:'方正像素12', '微软雅黑'; font-size:15px; font-style: italic">数据来源：截至2019年3月特来电充电桩运营品牌数据</span>
+
+            </div>
+            <br />
+
+            <p>
+                不难看出，新城区、莲湖区、碑林区、雁塔区、未央区、灞桥区这几个西安市中心区域的充电基础设施比较完善，尤其是有行
+                政功能的未央区，充电桩数量最多。如果我在中心区域驾驶新能源汽车，找地方充电不会太困难，但是如果想去周边区县旅游
+                或是走访亲戚，路上的充电可能是个大难题。那么，除了充电桩的数量分布，它们的质量又如何呢？
+            </p>
+            <br />
+
+            <div class="pic_name" style="padding-left:100px;">
+                <span style="font-family:'微软雅黑'; font-size:17px; font-weight: 900;">充电桩用户评价词云图</span>
+                <br />
+            </div>
+
+            <div style="width:750px;height:400px;border:1px solid transparent;overflow:hidden;margin:auto;">
+                <img src="img/9.png" alt="西安市充电桩用户评价" width="700px" />
+            </div>
+            
+            <div class="data_resource" style="padding-left:560px;">
+                <span style="font-family:'方正像素12', '微软雅黑'; font-size:15px; font-style: italic">数据来源：特来电充电桩运营品牌</span>
+                <br />
+                <br />
+            </div>
+
+            <p>
+                如此一来，我对市内充电基础设施的建设程度有了大致了解，发现大部分的电桩建设得不错，但不排除充电太慢，占位严重，
+                排队时间长等问题。而且，在与30位车友的交流中，我发现还是有许多车友对购置的新能源车比较满意，存在以下原因：
+            </p>
+            <br />
+
+            <div class="pic_name" style="padding-left:100px;">
+                    <span style="font-family:'微软雅黑'; font-size:17px; font-weight: 900;">车友对新能源汽车优势评价图</span>
+                    <br />
+            </div>
+
+            <div style="width:650px;height:350px;border:1px solid transparent;overflow:hidden;margin:auto;">
+                    <img src="img/10.png" alt="西安车友对新能源汽车的评价" width="650px" />
+            </div>
+            <div class="data_resource" style="padding-left:650px;">
+                    <span style="font-family:'方正像素12', '微软雅黑'; font-size:15px; font-style: italic">数据来源：调查问卷</span>
+                    <br />
+                    <br />
+            </div>
+
+            <p>
+                在这些原因中有车友对新能源汽车政策的考虑，也有对车本身性能的追求，比如车内噪音小，环保无味。
+            </p>
+            <br />
+            <h2><img class="wheels-nineteen" src="img/1_1.png" alt="car_gif" />  “老陕”看车型</h2>
+            <p>
+                有了充电基础设施和车友选择购置理由的“定心丸”之后，接下来就要考虑具体车型了。我查看了搜狐汽车网中新能源汽车销
+                量排名前20的车型，考量了它们的指导价、续航里程、排量。
+            </p>
+            <br />
+
+
+            <div class="pic_name" style="padding-left:100px;">
+                    <span style="font-family:'微软雅黑'; font-size:17px; font-weight: 900;">新能源汽车报价&续航里程&排量对比分析交互图</span>
+                    <br />
+                    <br />
+                    <br />
+            </div>
+
+            <div id="main" class="pic_4" style="width: 600px; height:600px; margin-left: 180px;"></div>
+
+            <script src="js/1.js"></script>
+            
+            <br />
+            <div style="width: 1000px; height: 500px;">
+
+
+                <div id="main1" class="pic_4_" style="width: 500px;height:500px;"></div><script type="text/javascript" src="js/2.js"></script><div id="main2" class="pic_4_" style="width: 500px; height:500px;"></div><script type="text/javascript" src="js/3.js"></script>
+            </div>
+            <div class="data_resource" style="padding-left:850px;">
+                    <span style="font-family:'方正像素12', '微软雅黑'; font-size:15px; font-style: italic">数据来源：搜狐汽车</span>
+
+            </div>
+
+            <p>
+                如今车企对新能源的开发达到了一定程度，有的续航里程已经可以达到510km，混动的新能源车排量也大多在1.5T及其以上。
+            </p>
+            <p>
+                通过这一系列的了解，西安新能源汽车发展前景跃然纸上。
+            </p>
+            <p>
+                如果你是“老陕”，你会选择购入新能源汽车吗？
+            </p>
+        </div>
+        
+
+
+        <div class="end_part" style="text-align: center; border: transparent;">
+            <br />
+            <br />
+            <a href="https://www.d1ev.com/" target="_blank"><input type="submit" style="margin: 0 200px; border: transparent; width:85px; height:38px; background: url(img/buyit.gif);" value=" " /></a>
+            <input id="donotbuy" type="submit" style="margin: 0 200px; border: transparent; width: 85px; height: 38px; background:url(img/nobuyit.gif)" value=" " onclick="diag()" />
+            
+            
+            <br />
+            <br />
+            <br />
+            <br />
+            
+            
+
+            <div id="file_source">
+                
+                <a href="source_data.html" target="_blank" style="text-decoration: none; font-size: 15px;">
+                    <img src="img/source2.gif" alt="查看资料库_像素风" style="width: 15%; border: none;">
+                </a>
+            </div>
+
+
+            <div id="top">
+                <a href="#" style="text-decoration: none; font-size: 15px;">
+                    <img src="img/top.gif" style="width: 6%; border: none;">
+                </a>           
+            </div>
+            
+            <div id="bottom">
+                <a href="#donotbuy" style="text-decoration: none; font-size: 15px;">
+                    <img src="img/bottom.gif" style="width: 6%; border: none;">
+                </a>
+            </div>
+
+            
+            <script type="text/javascript">
+                // 资料库链接
+                function source(){
+                    var top = $(document).scrollTop();
+                    if($(document).scrollTop()>700){
+                        $("#file_source").css({
+                            'display':'inline',
+                            '-webkit-transform':'translateZ(0px)',
+                            // 'top':top,
+                        });
+                    } else {
+                        $("#file_source").css('display','none');
+                    }
+                    setTimeout(source);
+                }
+                 
+                source();
+                // 回顶部
+                function getTop(){
+                        var top = $(document).scrollTop();
+                        if($(document).scrollTop()>700){
+                            $("#top").css({
+                                'display':'inline',
+                                '-webkit-transform':'translateZ(0px)',
+                                // 'top':top,
+                            });
+                        } else {
+                            $("#top").css('display','none');
+                        }
+                        setTimeout(getTop);
+                    }
+                     
+                getTop();
+                // 去底部
+                function getbottom(){
+                        var top = $(document).scrollTop();
+                        if($(document).scrollTop()>700){
+                            $("#bottom").css({
+                                'display':'inline',
+                                '-webkit-transform':'translateZ(0px)',
+                                // 'top':top,
+                            });
+                        } else {
+                            $("#bottom").css('display','none');
+                        }
+                        setTimeout(getbottom);
+                    }
+                     
+                getbottom();
+            </script>
+            
+
+        </div>
+        
+        
+        <script type="text/javascript">
+            function diag()
+            {
+                var str=prompt("感谢您的参与，为老陕车友留下一点建议再走吧！");
+                if(str)
+                {
+                    alert("十分感谢您的建议!   点击确定可返回当前页面")
+                }
+            }
+             
+        </script>
+       
+        
+    </body>
+</html>

@@ -1,0 +1,54 @@
+.head_pic{
+    width: 100%;
+    /* height: 750px; */
+    vertical-align: middle;
+    /* margin: 0 auto; */
+    /* -webkit-animation-name: shaky-slow;
+    -ms-animation-name: shaky-slow;		
+    animation-name: shaky-slow;		    
+    animation-duration: 4s;			
+    animation-delay: 0s;			
+    animation-iteration-count: infinite;	
+    animation-timing-function: ease-in-out;	
+    animation-delay: 0s;			
+    animation-play-state: running;	 */
+    
+
+    }
+
+.pic_4_{
+    float: left;
+
+}
+.wheels-nineteen{
+    /* animation:infinite-spinning 250ms steps(6) infinite;
+    background-image:url("img/1_1.png"); */
+
+
+    animation:rotateImg 1s linear infinite;
+    width: 45px ;
+    height: 45px;
+    /* border: 1px solid rgb(255, 255, 255); */
+    vertical-align: middle;
+    
+}
+
+@keyframes rotateImg {
+    0% {transform : rotate(0deg);}
+    100% {transform : rotate(360deg);}
+}
+
+@-webkit-keyframes rotateImg {
+    0%{-webkit-transform : rotate(0deg);}
+    100%{-webkit-transform : rotate(360deg);}
+
+}
+    /* -webkit-animation-name: shaky-slow;
+    -ms-animation-name: shaky-slow;		
+    animation-name: shaky-slow;		    
+    animation-duration: 4s;			
+    animation-delay: 0s;			
+    animation-iteration-count: infinite;	
+    animation-timing-function: ease-in-out;	
+    animation-delay: 0s;			
+    animation-play-state: running;	 */
